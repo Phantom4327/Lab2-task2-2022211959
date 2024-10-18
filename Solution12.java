@@ -17,10 +17,20 @@ import java.util.*;
 
 class Solution {
     public String multiply(String num1, String num2) {
-        if (num1.equals("0") | num2.equals("0")) {
+        if (num1.equals("0") || num2.equals("0")) { //using || instead of |
             return "0";
         }
-        String ans = "0"
+        for(int i = 0; i < num1.length(); i++) {  //check if input var isn't a valid number
+            if(num1.charAt(i) < '0' || num1.charAt(i) > '9') {
+                return "error: not a number";
+            }
+        }
+        for(int i = 0; i < num2.length(); i++) {  //check if input var isn't a valid number
+            if(num2.charAt(i) < '0' || num2.charAt(i) > '9') {
+                return "error: not a number";
+            }
+        }
+        String ans = "0";  //add missing semicolon
         int m = num1.length(), n = num2.length();
         for (int i = n - 1; i >= 0; i--) {
             StringBuffer curr = new StringBuffer();
@@ -38,24 +48,8 @@ class Solution {
             if (add != 0) {
                 curr.append(add % 10);
             }
-            ans == addStrings(ans, curr.reverse().toString());
+            ans = addStrings(ans, curr.reverse().toString());  //remove repeated equal sign
         }
         return ans;
-    }
-
-    public String addStrings(String num1, String num2) {
-        int i = num1.length() - 1, j = num2.length() - 1, add = 0;
-        StringBuffer ans = new StringBuffer();
-        while (i >= 0 || j >= 0 || add != 0) {
-            int x = i >= 0 ? num1.charAt(i) - '0' : 0;
-            int y = j >= 0 ? num2.charAt(j) - '0' : 0;
-            int result = x + y + add;
-            ans.append(result % 10);
-            add = result / 10;
-            i--;
-            j--;
-        }
-        ans.reverse();
-        return ans.toString();
     }
 }
