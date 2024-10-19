@@ -17,10 +17,20 @@ import java.util.*;
 
 class Solution {
     public String multiply(String num1, String num2) {
-        if (num1.equals("0") | num2.equals("0")) {
+        for(int i = 0; i < num1.length(); i++) {  //check if input var isn't a valid number
+            if(num1.charAt(i) < '0' || num1.charAt(i) > '9') {
+                return "error: not a number";
+            }
+        }
+        for(int i = 0; i < num2.length(); i++) {  //check if input var isn't a valid number
+            if(num2.charAt(i) < '0' || num2.charAt(i) > '9') {
+                return "error: not a number";
+            }
+        }
+        if (num1.equals("0") || num2.equals("0")) { //using || instead of |
             return "0";
         }
-        String ans = "0"
+        String ans = "0";  //add missing semicolon
         int m = num1.length(), n = num2.length();
         for (int i = n - 1; i >= 0; i--) {
             StringBuffer curr = new StringBuffer();
@@ -38,7 +48,7 @@ class Solution {
             if (add != 0) {
                 curr.append(add % 10);
             }
-            ans == addStrings(ans, curr.reverse().toString());
+            ans = addStrings(ans, curr.reverse().toString());  //remove repeated equal sign
         }
         return ans;
     }
