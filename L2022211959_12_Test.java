@@ -19,7 +19,7 @@ public class L2022211959_12_Test {
         assertEquals("0", solution.multiply("0", "0"));
         assertEquals("0", solution.multiply("0", "2333"));
         assertEquals("0", solution.multiply("2333", "0"));
-
+        assertEquals("error: not a number", solution.multiply("1.23", "-123"));//添加了测试小数
         assertEquals("error: not a number", solution.multiply("123", "-123"));
         assertEquals("error: not a number", solution.multiply("-123", "123"));
         assertEquals("error: not a number", solution.multiply("0", "-123"));
